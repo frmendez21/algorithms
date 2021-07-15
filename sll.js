@@ -179,12 +179,12 @@ sll.push(4)
 // sll.rotate(-1)
 // sll.rotate(2)
 // sll.remove(2)
-sll.reverse()
-let l = sll.length;
-let i = 0; 
+console.log(sll.reverse())
+// let l = sll.length;
+// let i = 0; 
 // while(l > 0) {
 //     console.log(sll.get(i));
 //     i++
 //     l--;
 // }
-console.log(sll)
+// console.log(sll)
