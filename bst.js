@@ -32,6 +32,41 @@ class BinarySearchTree {
         return this;
     }
 
+    remove(val) {
+        let removed;
+        const removeNode = (root, val) => {
+            if(val > root.value) {
+                root.right = removeNode(root.right, val)
+            } else if (val < root.value) {
+                root.left = removeNode(root.left, val);
+            } else {
+                removed = root;
+
+                if(!root.left && !root.right) {
+                    root = null;
+                } else if(!root.right) {
+                    root = root.left;
+                } else if(!root.left) {
+                    root = root.right;
+                } else {
+                    let temp = findMin(root.right)
+                    root.value = temp.value;
+                    root.right = removeNode(root.right, root.value) 
+                }
+            }
+            return root;
+        };
+
+        const findMin = node => {
+            if(!node) return;
+            if(node.left) return findMin(node.left);
+            return node;
+        };
+
+        this.root = removeNode(this.root, val);
+        return removed;
+    }
+
     find(val, root=this.root) {
         if(!root) return;
         if(val === root.value) return root;
@@ -97,6 +132,8 @@ bst.insert(50)
      \
       5
 */
-console.log(bst.DFSPreOrder()) // [15, 10, 1, 5, 12, 20, 50]
-console.log(bst.DFSPostOrder()) // [5, 1, 12, 10, 50, 20, 15]
-console.log(bst.DFSInOrder()) // [1, 5, 10, 12, 15, 20, 50]
+console.log(bst.remove(10))
+console.log(bst.root.left)
+// console.log(bst.DFSPreOrder()) // [15, 10, 1, 5, 12, 20, 50]
+// console.log(bst.DFSPostOrder()) // [5, 1, 12, 10, 50, 20, 15]
+// console.log(bst.DFSInOrder()) // [1, 5, 10, 12, 15, 20, 50]
