@@ -132,8 +132,8 @@ bst.insert(50)
      \
       5
 */
-console.log(bst.remove(10))
-console.log(bst.root.left)
+// console.log(bst.remove(10))
+// console.log(bst.root.left)
 // console.log(bst.DFSPreOrder()) // [15, 10, 1, 5, 12, 20, 50]
 // console.log(bst.DFSPostOrder()) // [5, 1, 12, 10, 50, 20, 15]
 // console.log(bst.DFSInOrder()) // [1, 5, 10, 12, 15, 20, 50]
