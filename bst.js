@@ -116,12 +116,15 @@ class BinarySearchTree {
 
 const bst = new BinarySearchTree();
 bst.insert(15)
-bst.insert(20)
+// bst.insert(20)
 bst.insert(10)
 bst.insert(12)
 bst.insert(1)
 bst.insert(5)
-bst.insert(50)
+// bst.insert(50)
+// bst.insert(80)
+// bst.insert(100)
+
 // console.log(bst.breadthFirstSearch()) // [15, 10, 20, 1, 12, 50, 5] 
 /* 
          15
