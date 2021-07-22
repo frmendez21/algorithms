@@ -5,6 +5,7 @@ class Node {
     }
 }
 class PriorityQueue {
+    // priority queue w/ min binary heap
     constructor() {
         this.values = [];
     }
@@ -25,7 +26,7 @@ class PriorityQueue {
         if(currNode.priority < parentNode.priority) {
             [this.values[parentIdx], this.values[idx]] = [this.values[idx], this.values[parentIdx]]
             this.bubbleUp(parentIdx);
-        }
+        } 
     }
 
     dequeue() {
@@ -61,24 +62,11 @@ class PriorityQueue {
 }
 
 const pq = new PriorityQueue();
-
 pq.enqueue('Bill', 3);
 pq.enqueue('Jane', 2);
 pq.enqueue('Joe', 5);
 pq.enqueue('Mary', 1);
 pq.enqueue('Josh', 6);
 pq.dequeue()
-/*
-   [ Node { value: 'Mary', priority: 1 },
-     Node { value: 'Jane', priority: 2 },
-     Node { value: 'Joe', priority: 5 },
-     Node { value: 'Bill', priority: 3 },
-     Node { value: 'Josh', priority: 6 } ] }
-*/
 
-/*
-            6
-        2       5
-    3          
-*/
-console.log(pq)
+console.log(pq.dequeue())
