@@ -61,12 +61,3 @@ class PriorityQueue {
     }
 }
 
-const pq = new PriorityQueue();
-pq.enqueue('Bill', 3);
-pq.enqueue('Jane', 2);
-pq.enqueue('Joe', 5);
-pq.enqueue('Mary', 1);
-pq.enqueue('Josh', 6);
-pq.dequeue()
-
-console.log(pq.dequeue())
