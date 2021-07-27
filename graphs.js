@@ -30,13 +30,52 @@ class Graph {
 
         delete this.adjacencyList[vertex]
     }
+    depthFirstSearch(vert) {
+        
+        const result = [];
+
+        const DFS = (node, visited=new Set()) => {
+            if(!this.adjacencyList[node]) return;
+
+            if(!visited.has(node)){
+                 visited.add(node)
+                 result.push(node);
+            };
+            
+            this.adjacencyList[node].forEach(v => {
+                if(!visited.has(v)) DFS(v, visited);
+            }); 
+        };
+
+        DFS(vert);
+        return result;
+    }
+
+    breadthFirstSearch(vert) {
+        let queue = [vert];
+        let visited = new Set();
+        const res = [];
+        
+        while(queue.length) {
+            const curr = queue.shift();
+            visited.add(curr);
+            res.push(curr);
+            this.adjacencyList[curr].forEach(v => {
+                if(!visited.has(v)) {
+                    queue.push(v);
+                }
+            })
+        }
+
+        return res;
+    }
 }
 
-// const g = new Graph();
-// g.addVertex('A');
-// g.addVertex('B');
-// g.addVertex('C');
-// g.addEdge('A', 'B')
-// g.addEdge('B', 'C')
-// g.removeVertex('A')
-// console.log(g)
+const g = new Graph();
+g.addVertex('A');
+g.addVertex('B');
+g.addVertex('C');
+g.addEdge('A', 'B')
+g.addEdge('B', 'C')
+
+console.log(g.breadthFirstSearch('A'))
