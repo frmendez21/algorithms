@@ -16,8 +16,30 @@ class Trie {
         }
         return this;
     }
+
+    removeWord(word) {
+        if(word.length === 0) {
+            this.isWord = false;
+        } else {
+            let char = word[0];
+            let subTrie = this.characters[char];
+            subTrie.removeWord(word.slice(1));
+            if(Object.keys(subTrie.characters).length === 0 && !this.isWord) {
+                delete this.characters[char]
+            }
+        }
+        return this;
+    }
 }
 
 const t = new Trie();
 t.addWord('fun')
-console.log(t.characters.f.characters.u.characters.n)
+t.addWord('fast')
+t.addWord('fat')
+t.addWord('fate')
+t.addWord('father')
+t.addWord('forget')
+t.addWord('awesome')
+t.addWord('argue')
+t.removeWord('fat')
+console.log(t.characters.f.characters.a.characters.t)
