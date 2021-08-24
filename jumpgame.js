@@ -1,10 +1,4 @@
-// const canJump = (array, validIndex=array.length - 1, checkIndex=array.length - 1)=> {
-    // if(!array.length) return false;
-    // const sum = array[checkIndex] + checkIndex;
-    // if(sum >= validIndex) validIndex = checkIndex;
-    // if(validIndex === 0) return true;
-    // return canJump(array.slice(0, array.length - 1), validIndex, checkIndex - 1)
-// };
+
 const canJump = array => {
     let validIdx = array.length - 1;
     for(let i = array.length -2; i >= 0; i--) {
