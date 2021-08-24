@@ -1,4 +1,5 @@
 const rob = nums => {
+    if(nums.length <= 1) return nums;
     let table = [nums[0]];
 
     if(nums[0] > nums[1]) {
