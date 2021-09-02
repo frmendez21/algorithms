@@ -11,11 +11,14 @@ const smallestDifference = (arrayOne, arrayTwo) => {
             smallest = diff;
             result = [arrayOne[i], arrayTwo[j]]
         } 
+        if(diff === 0) {
+            return result;
+        }
         arrayOne[i] < arrayTwo[j] ? i++ : j++;
     }
     return result
 };
 
 const a1 = [-1, 5, 10, 20, 28, 3];
-const a2 = [26, 134, 135, 15, 17];
+const a2 = [26, 10, 135, 15, 17];
 console.log(smallestDifference(a1, a2)) // [28, 26]
