@@ -23,7 +23,7 @@ root.left.left = new BinaryTree(4);
 root.left.right = new BinaryTree(5);
 root.left.left.left = new BinaryTree(8);
 root.left.left.right = new BinaryTree(9);
-root.left.right.left = new BinaryTree(10);
+// root.left.right.left = new BinaryTree(10);
 root.right.left = new BinaryTree(6);
 root.right.right = new BinaryTree(7);
 console.log(branchSums(root))
