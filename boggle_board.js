@@ -4,8 +4,7 @@ function boggleBoard(board, words) {
     words.forEach(word => trie.addWords(word));
     const boolMatrix = Array.from(Array(board.length), x => Array(board[0].length).fill(false));
     for(let i = 0; i < board.length; i++) {
-        for(let j = 0; j < board[0].length; j++) {
-            console.log(trie.chars[board[i][j]])
+        for(let j = 0; j < board[i].length; j++) {
             if(trie.chars[board[i][j]]) {
                 const word = findWords(board, boolMatrix, i, j, trie.chars[board[i][j]], board[i][j])
                 if(word) boggleWords.push(word)
@@ -17,10 +16,10 @@ function boggleBoard(board, words) {
 
 function findWords(board, boolMatrix, i, j, trie, word='') {
     if(i < 0 || j < 0 || i > board.length || j > board[0].length || boolMatrix[i][j]) return;
-    boolMatrix[i][j] === true ? boolMatrix[i][j] = false : boolMatrix[i][j] = true
+    boolMatrix[i][j] = true;
     if(trie.isWord) return word;
     
-    // console.log(word)
+    console.log(word)
     const down = board[i + 1] ? board[i + 1][j] : null;
     const up = board[i - 1] ? board[i - 1][j] : null;
     const left = board[i][j - 1];
@@ -29,32 +28,39 @@ function findWords(board, boolMatrix, i, j, trie, word='') {
     const downLeft = board[i + 1] ? board[i + 1][j - 1] : null;
     const upLeft = board[i - 1] ? board[i - 1][j - 1] : null;
     const upRight = board[i -1] ? board[i - 1][j + 1] : null;
+     if(left && trie.chars[left] && !boolMatrix[i][j - 1]) {
+        word += left;
+        return findWords(board, boolMatrix, i, j - 1, trie.chars[left], word)
+    } 
+    if(right && trie.chars[right]) {
+        word += right;
+        return findWords(board, boolMatrix, i, j + 1, trie.chars[right], word)
+    } 
     if(down && trie.chars[down]) {
         word += down;
         return findWords(board, boolMatrix, i + 1, j, trie.chars[down], word)
-    } else if(up && trie.chars[up]) {
+    } 
+    if(up && trie.chars[up]) {
         word += up;
         return findWords(board, boolMatrix, i - 1, j, trie.chars[up], word)
-    } else if(left && trie.chars[left]) {
-        word += left;
-        return findWords(board, boolMatrix, i, j - 1, trie.chars[left], word)
-    } else if(right && trie.chars[right]) {
-        word += right;
-        return findWords(board, boolMatrix, i, j + 1, trie.chars[right], word)
-    } else if(downRight && trie.chars[downRight]) {
+    } 
+    if(downRight && trie.chars[downRight]) {
         word += downRight;
         return findWords(board, boolMatrix, i + 1, j + 1, trie.chars[downRight], word)
-    } else if(downLeft && trie.chars[downLeft]) {
+    } 
+    if(downLeft && trie.chars[downLeft]) {
         word += downLeft;
         return findWords(board, boolMatrix, i + 1, j - 1, trie.chars[downLeft], word)
-    } else if(upLeft && trie.chars[upLeft]) {
+    } 
+    if(upLeft && trie.chars[upLeft]) {
         word += upLeft;
         return findWords(board, boolMatrix, i - 1, j - 1, trie.chars[upLeft], word)
-    } else if(upRight && trie.chars[upRight]) {
+    } 
+    if(upRight && trie.chars[upRight]) {
         word += upRight;
         return findWords(board, boolMatrix, i - 1, j + 1, trie.chars[upRight], word)
     } 
-
+    
 }
 
 class Trie {
@@ -88,6 +94,16 @@ const arr = [
   ["N", "O", "T", "R", "E", "-", "P"],
   ["x", "x", "D", "E", "T", "A", "E"]
 ];
+const arr2 = [
+    ["y", "g", "f", "y", "e", "i"],
+    ["c", "o", "r", "p", "o", "u"],
+    ["j", "u", "z", "s", "e", "l"],
+    ["s", "y", "u", "r", "h", "p"],
+    ["e", "a", "e", "g", "n", "d"],
+    ["h", "e", "l", "s", "a", "t"]
+  ]
+const words2 = ["san", "sana", "at", "vomit", "yours", "help", "end", "been", "bed", "danger", "calm", "ok", "chaos", "complete", "rear", "going", "storm", "face", "epual", "dangerous"];
+
 const words = ["this", "is", "not", "a", "simple", "boggle", "board", "test", "REPEATED", "NOTRE-PEATED"]
 
-console.log(boggleBoard(arr, words))
+console.log(boggleBoard(arr2, words2))
